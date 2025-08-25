@@ -16,6 +16,7 @@ export function TodoList({ todos }: ITodoListProp): ReactElement {
           content={todoItem.content}
           author={todoItem.author}
           completed={todoItem.completed}
+          timeStamp={todoItem.timeStamp}
         />
       ))}
     </section>

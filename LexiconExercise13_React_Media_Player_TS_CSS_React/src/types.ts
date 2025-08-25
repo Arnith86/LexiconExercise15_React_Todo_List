@@ -4,4 +4,5 @@ export interface ITodo {
   content: string;
   author: string;
   completed: boolean;
+  timeStamp: Date;
 }

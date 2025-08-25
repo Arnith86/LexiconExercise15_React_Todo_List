@@ -9,6 +9,7 @@ interface ITodoItemProp {
   content: string;
   author?: string;
   completed?: boolean;
+  timeStamp: Date;
   //onButtonClick: (uuid: string, action: string) => void;
 }
 
@@ -18,6 +19,7 @@ export function TodoItem({
   content,
   author,
   completed,
+  timeStamp, // use when edit
 }: ITodoItemProp): ReactElement {
   return (
     <article className="todo-item">
@@ -25,6 +27,9 @@ export function TodoItem({
       <p className="todo-item-content">{content}</p>
       <p className="todo-author">{author}</p>
       <input type="checkbox" checked={completed ?? false} />
+      <time dateTime={timeStamp.toISOString()}>
+        {timeStamp.toLocaleString()}
+      </time>
       <Button
         className="edit-todo-button"
         iconName={"edit"}

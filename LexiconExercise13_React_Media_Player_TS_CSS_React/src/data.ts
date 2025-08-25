@@ -7,6 +7,7 @@ export const todos: ITodo[] = [
     content: "Milk, bread, eggs, and coffee",
     author: "Jean-Paul",
     completed: false,
+    timeStamp: new Date("2025-08-20T10:30:00"),
   },
   {
     uuid: "4d5e6f",
@@ -14,6 +15,7 @@ export const todos: ITodo[] = [
     content: "Write the summary and proofread before submission",
     author: "Alex",
     completed: true,
+    timeStamp: new Date("2025-08-19T14:15:00"),
   },
   {
     uuid: "7g8h9i",
@@ -21,6 +23,7 @@ export const todos: ITodo[] = [
     content: "Leg day at the gym — squats, lunges, and deadlifts",
     author: "Maria",
     completed: false,
+    timeStamp: new Date("2025-08-18T18:00:00"),
   },
   {
     uuid: "0j1k2l",
@@ -28,6 +31,7 @@ export const todos: ITodo[] = [
     content: "Book hotel and research activities in Gothenburg",
     author: "Jean-Paul",
     completed: false,
+    timeStamp: new Date("2025-08-17T09:45:00"),
   },
   {
     uuid: "3m4n5o",
@@ -35,5 +39,6 @@ export const todos: ITodo[] = [
     content: "Continue reading 'Clean Code' by Robert C. Martin",
     author: "Lina",
     completed: true,
+    timeStamp: new Date("2025-08-15T20:10:00"),
   },
 ];
