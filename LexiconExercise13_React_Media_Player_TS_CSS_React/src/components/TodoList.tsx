@@ -9,16 +9,20 @@ interface ITodoListProp {
 export function TodoList({ todos }: ITodoListProp): ReactElement {
   return (
     <section className="todo-list">
-      {todos.map((todoItem) => (
-        <TodoItem
-          uuid={todoItem.uuid}
-          title={todoItem.title}
-          content={todoItem.content}
-          author={todoItem.author}
-          completed={todoItem.completed}
-          timeStamp={todoItem.timeStamp}
-        />
-      ))}
+      {todos.map((todoItem) => renderTodoList(todoItem))}
     </section>
+  );
+}
+
+function renderTodoList(todoItem: ITodo) {
+  return (
+    <TodoItem
+      uuid={todoItem.uuid}
+      title={todoItem.title}
+      content={todoItem.content}
+      author={todoItem.author}
+      completed={todoItem.completed}
+      timeStamp={todoItem.timeStamp}
+    />
   );
 }

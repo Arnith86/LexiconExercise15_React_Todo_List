@@ -1,15 +1,44 @@
-import type { ReactElement } from "react";
+import type { FormEvent, ReactElement } from "react";
 import { Button } from "./Button";
+import type { ITodo } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
-export function ToDoCreationForm(): ReactElement {
+interface ITodoCreationFormProp {
+  addToDo: (todo: ITodo) => void;
+}
+
+export function ToDoCreationForm({
+  addToDo,
+}: ITodoCreationFormProp): ReactElement {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("todo-title-input") as string;
+    const content = formData.get("todo-content-input") as string;
+    const author = formData.get("todo-content-input") as string;
+
+    const newTodo: ITodo = {
+      uuid: uuidv4(),
+      title,
+      content,
+      author,
+      completed: false,
+      timeStamp: new Date(),
+    };
+
+    addToDo(newTodo);
+    event.currentTarget.reset();
+  }
+
   return (
-    <form className="todo-creation-form">
+    <form className="todo-creation-form" onSubmit={handleSubmit}>
       <label htmlFor="todo-title-input">Title: </label>
       <input
         type="text"
         required
         className="todo-title-text-input"
-        id="todo-title-input"
+        name="todo-title-input"
         placeholder="A nifty title.."
       />
 
@@ -18,7 +47,7 @@ export function ToDoCreationForm(): ReactElement {
         type="text"
         required
         className="todo-content-text-input"
-        id="todo-content-input"
+        name="todo-content-input"
         placeholder="What needs to be done?"
       />
 
@@ -26,7 +55,7 @@ export function ToDoCreationForm(): ReactElement {
       <input
         type="text"
         className="todo-author-text-input"
-        id="todo-author-input"
+        name="todo-author-input"
       />
 
       <Button

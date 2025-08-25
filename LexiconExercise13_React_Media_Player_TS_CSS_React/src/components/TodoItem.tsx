@@ -19,7 +19,7 @@ export function TodoItem({
   content,
   author,
   completed,
-  timeStamp, // use when edit
+  timeStamp,
 }: ITodoItemProp): ReactElement {
   return (
     <article className="todo-item">
