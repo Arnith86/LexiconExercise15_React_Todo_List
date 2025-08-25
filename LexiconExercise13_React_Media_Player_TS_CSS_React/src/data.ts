@@ -1,0 +1,39 @@
+import type { ITodo } from "./types";
+
+export const todos: ITodo[] = [
+  {
+    uuid: "1a2b3c",
+    title: "Buy groceries",
+    content: "Milk, bread, eggs, and coffee",
+    author: "Jean-Paul",
+    completed: false,
+  },
+  {
+    uuid: "4d5e6f",
+    title: "Finish project report",
+    content: "Write the summary and proofread before submission",
+    author: "Alex",
+    completed: true,
+  },
+  {
+    uuid: "7g8h9i",
+    title: "Workout session",
+    content: "Leg day at the gym — squats, lunges, and deadlifts",
+    author: "Maria",
+    completed: false,
+  },
+  {
+    uuid: "0j1k2l",
+    title: "Plan weekend trip",
+    content: "Book hotel and research activities in Gothenburg",
+    author: "Jean-Paul",
+    completed: false,
+  },
+  {
+    uuid: "3m4n5o",
+    title: "Read book",
+    content: "Continue reading 'Clean Code' by Robert C. Martin",
+    author: "Lina",
+    completed: true,
+  },
+];
