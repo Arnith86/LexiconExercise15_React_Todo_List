@@ -73,7 +73,7 @@ export function Button({
     >
       {iconName ? (
         <Icon
-          className={`button-icon icon ${isFilled ? "filled" : ""}`}
+          className={`button-icon g-icon ${isFilled ? "filled" : ""}`}
           iconName={iconName}
         />
       ) : (
