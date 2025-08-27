@@ -21,15 +21,17 @@ function App() {
     setToDoList(storedItems.length > 0 ? storedItems : todos);
   }, []);
 
-  // Remove if not used !!!
-  useEffect(() => {}, [todoList]);
-
   function handleTodoItemButtonEvent(action: TodoAction, uuid: string): void {
     switch (action) {
       case "delete":
         deleteTodo(uuid);
         break;
-
+      case "up":
+        moveItem(Constants.TODO_MOVE_UP, uuid);
+        break;
+      case "down":
+        moveItem(Constants.TODO_MOVE_DOWN, uuid);
+        break;
       default:
         break;
     }
@@ -42,6 +44,24 @@ function App() {
 
   function deleteTodo(uuid: string): void {
     const updatedList: ITodo[] = todoList.filter((todo) => todo.uuid !== uuid);
+    saveList(updatedList);
+  }
+
+  function moveItem(direction: number, uuid: string): void {
+    const originalIndex: number = todoList.findIndex(
+      (todo) => todo.uuid === uuid
+    );
+
+    const nextIndex = originalIndex + direction;
+    if (nextIndex < 0 || nextIndex > todoList.length - 1) return;
+
+    const updatedList = [...todoList];
+
+    const itemToMove = updatedList[originalIndex];
+
+    updatedList[originalIndex] = updatedList[nextIndex];
+    updatedList[nextIndex] = itemToMove;
+
     saveList(updatedList);
   }
 
