@@ -7,6 +7,7 @@ import { todos } from "./data";
 import type { ITodo } from "./types";
 import { useEffect, useState } from "react";
 import { loadFromLocalStorage } from "./localStorageContainer";
+import type { TodoAction } from "./components/TodoItem";
 
 function App() {
   const [todoList, setToDoList] = useState<ITodo[]>([]);
@@ -18,8 +19,25 @@ function App() {
 
   useEffect(() => {}, [todoList]);
 
+  function handleTodoItemButtonEvent(action: TodoAction, uuid: string): void {
+    switch (action) {
+      case "delete":
+        deleteTodo(uuid);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   function addTodo(todo: ITodo): void {
     setToDoList((prev) => [...prev, todo]);
+    // ToDo: save to storage
+  }
+
+  function deleteTodo(uuid: string): void {
+    setToDoList((prev) => prev.filter((todo) => todo.uuid !== uuid));
+    // ToDo: save to storage
   }
 
   function handleCompleteToggle(uuid: string): void {
@@ -37,7 +55,11 @@ function App() {
     <main>
       <Header />
       <ToDoCreationForm addToDo={addTodo} />
-      <TodoList todos={todoList} onToggle={handleCompleteToggle} />
+      <TodoList
+        todos={todoList}
+        onToggle={handleCompleteToggle}
+        onButtonClick={handleTodoItemButtonEvent}
+      />
     </main>
   );
 }

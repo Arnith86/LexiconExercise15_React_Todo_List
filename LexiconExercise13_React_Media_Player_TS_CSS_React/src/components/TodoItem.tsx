@@ -1,29 +1,34 @@
 import type { ReactElement } from "react";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
-import { TodoItemButtons } from "./TodoItemButtons";
-
-type TodoAction = "edit" | "delete" | "up" | "down";
+import { TodoItemButtons, type TodoAction } from "./TodoItemButtons";
 
 interface ITodoItemProp {
+  uuid: string;
   title: string;
   content: string;
   author?: string;
   completed?: boolean;
   timeStamp: Date;
-  //onButtonClick: (uuid: string, action: string) => void;
+  onButtonClick: (action: TodoAction, uuid: string) => void;
   onCompleteToggle: () => void;
 }
 
 // ToDo: add edit ToDo item functionality
 export function TodoItem({
+  uuid,
   title,
   content,
   author,
   completed,
   timeStamp,
+  onButtonClick,
   onCompleteToggle,
 }: ITodoItemProp): ReactElement {
+  function forwardButtonEvent(action: TodoAction): void {
+    onButtonClick(action, uuid);
+  }
+
   return (
     <article className="todo-item">
       <input
@@ -37,7 +42,7 @@ export function TodoItem({
       <time dateTime={timeStamp.toISOString()}>
         {timeStamp.toLocaleString()}
       </time>
-      <TodoItemButtons />
+      <TodoItemButtons onButtonClick={forwardButtonEvent} />
     </article>
   );
 }
