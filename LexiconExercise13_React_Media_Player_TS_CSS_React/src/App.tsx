@@ -57,10 +57,11 @@ function App() {
 
     const updatedList = [...todoList];
 
-    const itemToMove = updatedList[originalIndex];
-
-    updatedList[originalIndex] = updatedList[nextIndex];
-    updatedList[nextIndex] = itemToMove;
+    // Switch places of two elements in an array using deconstruction.
+    [updatedList[originalIndex], updatedList[nextIndex]] = [
+      updatedList[nextIndex],
+      updatedList[originalIndex],
+    ];
 
     saveList(updatedList);
   }
