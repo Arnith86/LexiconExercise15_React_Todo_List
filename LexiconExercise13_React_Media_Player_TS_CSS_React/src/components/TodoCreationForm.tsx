@@ -8,6 +8,25 @@ interface ITodoCreationFormProp {
   addToDo: (todo: ITodo) => void;
 }
 
+/**
+ * A controlled form component for creating new todos.
+ *
+ * ### Behavior
+ * - Collects `title`, `description`, and `author` from input fields.
+ * - On submit:
+ *   - Prevents the default browser form behavior.
+ *   - Constructs a new {@link ITodo} object with a unique UUID and timestamp.
+ *   - Invokes the `addToDo` callback with the new todo.
+ *   - Resets the form fields.
+ *
+ * ### Fields
+ * - **Title**: Required short text input.
+ * - **Description**: Required short text input.
+ * - **Author**: Optional short text input.
+ *
+ * @param props - See {@link ITodoCreationFormProp}.
+ * @returns A `<form>` element that submits new todos.
+ */
 export function ToDoCreationForm({
   addToDo,
 }: ITodoCreationFormProp): ReactElement {
@@ -58,7 +77,7 @@ export function ToDoCreationForm({
       />
       <Button className="g-button todo-form-submit-button" buttonType="submit">
         <Icon iconName={"add"} />
-      </Button>{" "}
+      </Button>
     </form>
   );
 }
