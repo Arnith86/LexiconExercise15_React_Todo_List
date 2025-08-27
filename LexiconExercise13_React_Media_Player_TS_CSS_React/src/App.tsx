@@ -26,6 +26,9 @@ function App() {
       case "delete":
         deleteTodo(uuid);
         break;
+      case "edit":
+        deleteTodo(uuid);
+        break;
       case "up":
         moveItem(Constants.TODO_MOVE_UP, uuid);
         break;
@@ -72,14 +75,14 @@ function App() {
   }
 
   function handleCompleteToggle(uuid: string): void {
-    setToDoList((prev) =>
-      // JP comment: New array created, for each todo in array, if uuid matches the todo uuid
-      //             spread the contents of todo and flip the completed boolean, else just
-      //             return original todo.
-      prev.map((todo) =>
-        todo.uuid === uuid ? { ...todo, completed: !todo.completed } : todo
-      )
+    // JP comment: New array created, for each todo in array, if uuid matches the todo uuid
+    //             spread the contents of todo and flip the completed boolean, else just
+    //             return original todo.
+    const updatedList: ITodo[] = todoList.map((todo) =>
+      todo.uuid === uuid ? { ...todo, completed: !todo.completed } : todo
     );
+
+    saveList(updatedList);
   }
 
   return (

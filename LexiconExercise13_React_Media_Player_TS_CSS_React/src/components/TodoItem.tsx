@@ -1,6 +1,4 @@
 import type { ReactElement } from "react";
-import { Button } from "./Button";
-import { Icon } from "./Icon";
 import { TodoItemButtons, type TodoAction } from "./TodoItemButtons";
 
 interface ITodoItemProp {
@@ -28,6 +26,7 @@ export function TodoItem({
   function forwardButtonEvent(action: TodoAction): void {
     onButtonClick(action, uuid);
   }
+
   // Ensures that timeStamp is a Date object,
   // does not happen automatically when loaded from localStorage.
   const date = timeStamp instanceof Date ? timeStamp : new Date(timeStamp);

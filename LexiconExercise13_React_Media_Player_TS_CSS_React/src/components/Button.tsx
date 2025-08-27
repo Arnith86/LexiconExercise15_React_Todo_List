@@ -1,5 +1,4 @@
 import { useState, type ReactElement, type ReactNode } from "react";
-import { Icon } from "./Icon";
 
 interface IButtonProp {
   children: ReactNode;
