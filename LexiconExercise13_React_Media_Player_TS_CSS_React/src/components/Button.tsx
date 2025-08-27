@@ -1,61 +1,26 @@
-import { useState, type ReactElement } from "react";
+import { useState, type ReactElement, type ReactNode } from "react";
 import { Icon } from "./Icon";
 
 interface IButtonProp {
+  children: ReactNode;
   className: string;
   buttonType: "button" | "reset" | "submit";
-  iconName?: null | string;
-  isFilled?: boolean;
-  buttonString?: null | string;
   onClick?: () => void;
 }
 
 /**
- * A reusable button component that can render either:
- * - A Material Icon (via {@link Icon}), or
- * - A text label.
+ * A reusable button component.
  *
- * ### Visual behavior
- * - If `iconName` is provided, an icon will be rendered.
- *   - If `isFilled` is `true`, the icon gets a `"filled"` class for styling.
- * - If no `iconName` is provided, the button will display `buttonString` as text.
+ * This component is flexible: it does not decide whether to render
+ * an icon or text. Instead, content is passed as `children`, allowing
+ * any combination of icons, text, or custom elements.
  *
- * ### Button type
- * - Controlled by {@link IButtonProp.buttonType}, ensuring semantic use in forms (`submit`, `reset`) or generic usage (`button`).
- *
- * ### Click behavior
- * - If {@link IButtonProp.onClick} is provided, it will be called when the button is pressed.
- * - Safe-guarded with optional chaining, so no errors occur if `onClick` is undefined.
- *
- * @example Icon button:
- * ```tsx
- * <Button
- *   className="play-btn"
- *   buttonType="button"
- *   iconName="play_arrow"
- * />
- * ```
- *
- * @example Text button:
- * ```tsx
- * <Button
- *   className="add-btn"
- *   buttonType="submit"
- *   buttonString="Add ToDo"
- * />
- * ```
- *
- * @param props - Button properties defined in {@link IButtonProp}.
- * @returns A styled React `<button>` element with optional icon or text.
+ * @param props - See {@link IButtonProp}.
+ * @returns A styled React `<button>` element.
  */
-export function Button({
-  className,
-  buttonType,
-  iconName,
-  isFilled,
-  buttonString,
-  onClick,
-}: IButtonProp): ReactElement {
+export function Button(props: IButtonProp): ReactElement {
+  const { children, className, buttonType, onClick } = props;
+
   function handleClick(event: React.MouseEvent<HTMLButtonElement>): void {
     onClick?.();
     /** JP Comment: ?: only executes if onClick is not undefined. works the same as
@@ -71,14 +36,7 @@ export function Button({
       onClick={handleClick}
       type={buttonType}
     >
-      {iconName ? (
-        <Icon
-          className={`button-icon g-icon ${isFilled ? "filled" : ""}`}
-          iconName={iconName}
-        />
-      ) : (
-        <span>{buttonString}</span>
-      )}
+      {children}
     </button>
   );
 }

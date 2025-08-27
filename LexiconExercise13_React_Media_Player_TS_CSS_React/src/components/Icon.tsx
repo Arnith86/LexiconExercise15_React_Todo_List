@@ -1,22 +1,24 @@
 import type { ReactElement } from "react";
 
 interface IIconProp {
-  className: string;
   iconName: string;
+  isFilled?: boolean;
 }
 
 /**
- * Renders a Material Symbols icon as a span element.
+ * Renders a Material Symbols icon as a `<span>` element.
  *
- * This component applies the `material-symbols-outlined` class to the span
- * and allows additional custom styling through the `className` prop.
+ * This component applies classes:
+ * - `"material-symbols-outlined"` and  `"g-icon"`
+ * - `"isFilled"` (optional) → when {@link IIconProp.isFilled} is `true`
  *
- * @param className - Custom CSS class(es) to apply to the icon.
- * @param iconName - The specific Material Symbols icon to render.
- * @returns A React element representing the icon.
+ * @param props - See {@link IIconProp}.
+ * @returns A styled React `<span>` element containing the Material Symbol name.
  */
-export function Icon({ className, iconName }: IIconProp): ReactElement {
-  return (
-    <span className={`${className} material-symbols-outlined`}>{iconName}</span>
-  );
+export function Icon({ iconName, isFilled }: IIconProp): ReactElement {
+  const classes: string[] = ["material-symbols-outlined", "g-icon"];
+
+  if (isFilled) classes.push("isFilled");
+
+  return <span className={classes.join(" ")}>{iconName}</span>;
 }

@@ -2,6 +2,7 @@ import type { FormEvent, ReactElement } from "react";
 import { Button } from "./Button";
 import type { ITodo } from "../types";
 import { v4 as uuidv4 } from "uuid";
+import { Icon } from "./Icon";
 
 interface ITodoCreationFormProp {
   addToDo: (todo: ITodo) => void;
@@ -41,7 +42,6 @@ export function ToDoCreationForm({
         name="todo-title-input"
         placeholder="A nifty title.."
       />
-
       <label htmlFor="todo-content-input">Description: </label>
       <input
         type="text"
@@ -50,19 +50,15 @@ export function ToDoCreationForm({
         name="todo-content-input"
         placeholder="What needs to be done?"
       />
-
       <label htmlFor="todo-author-input">Author: </label>
       <input
         type="text"
         className="todo-author-text-input"
         name="todo-author-input"
       />
-
-      <Button
-        className="g-button todo-form-submit-button"
-        iconName={"add"}
-        buttonType="submit"
-      />
+      <Button className="g-button todo-form-submit-button" buttonType="submit">
+        <Icon iconName={"add"} />
+      </Button>{" "}
     </form>
   );
 }

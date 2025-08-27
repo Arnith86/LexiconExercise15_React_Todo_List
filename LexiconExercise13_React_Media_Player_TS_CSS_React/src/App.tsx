@@ -19,15 +19,25 @@ function App() {
   useEffect(() => {}, [todoList]);
 
   function addTodo(todo: ITodo): void {
-    console.log(todo);
     setToDoList((prev) => [...prev, todo]);
+  }
+
+  function handleCompleteToggle(uuid: string): void {
+    setToDoList((prev) =>
+      // JP comment: New array created, for each todo in array, if uuid matches the todo uuid
+      //             spread the contents of todo and flip the completed boolean, else just
+      //             return original todo.
+      prev.map((todo) =>
+        todo.uuid === uuid ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   }
 
   return (
     <main>
       <Header />
       <ToDoCreationForm addToDo={addTodo} />
-      <TodoList todos={todoList} />
+      <TodoList todos={todoList} onToggle={handleCompleteToggle} />
     </main>
   );
 }
