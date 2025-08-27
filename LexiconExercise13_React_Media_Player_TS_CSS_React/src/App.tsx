@@ -6,17 +6,22 @@ import { TodoList } from "./components/TodoList";
 import { todos } from "./data";
 import type { ITodo } from "./types";
 import { useEffect, useState } from "react";
-import { loadFromLocalStorage } from "./localStorageContainer";
-import type { TodoAction } from "./components/TodoItem";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "./localStorageContainer";
+import type { TodoAction } from "./components/TodoItemButtons";
 
 function App() {
   const [todoList, setToDoList] = useState<ITodo[]>([]);
 
+  // Load todo list in local storage
   useEffect(() => {
     const storedItems: ITodo[] = loadFromLocalStorage(Constants.TODO_ITEMS);
     setToDoList(storedItems.length > 0 ? storedItems : todos);
   }, []);
 
+  // Remove if not used !!!
   useEffect(() => {}, [todoList]);
 
   function handleTodoItemButtonEvent(action: TodoAction, uuid: string): void {
@@ -31,13 +36,18 @@ function App() {
   }
 
   function addTodo(todo: ITodo): void {
-    setToDoList((prev) => [...prev, todo]);
-    // ToDo: save to storage
+    const updatedList: ITodo[] = [...todoList, todo];
+    saveList(updatedList);
   }
 
   function deleteTodo(uuid: string): void {
-    setToDoList((prev) => prev.filter((todo) => todo.uuid !== uuid));
-    // ToDo: save to storage
+    const updatedList: ITodo[] = todoList.filter((todo) => todo.uuid !== uuid);
+    saveList(updatedList);
+  }
+
+  function saveList(updatedList: ITodo[]) {
+    setToDoList(updatedList);
+    saveToLocalStorage(Constants.TODO_ITEMS, updatedList);
   }
 
   function handleCompleteToggle(uuid: string): void {

@@ -28,6 +28,9 @@ export function TodoItem({
   function forwardButtonEvent(action: TodoAction): void {
     onButtonClick(action, uuid);
   }
+  // Ensures that timeStamp is a Date object,
+  // does not happen automatically when loaded from localStorage.
+  const date = timeStamp instanceof Date ? timeStamp : new Date(timeStamp);
 
   return (
     <article className="todo-item">
@@ -39,9 +42,7 @@ export function TodoItem({
       <h2 className="todo-item-title">{title}</h2>
       <p className="todo-item-content">{content}</p>
       <p className="todo-author">{author}</p>
-      <time dateTime={timeStamp.toISOString()}>
-        {timeStamp.toLocaleString()}
-      </time>
+      <time dateTime={date.toISOString()}>{timeStamp.toLocaleString()}</time>
       <TodoItemButtons onButtonClick={forwardButtonEvent} />
     </article>
   );
