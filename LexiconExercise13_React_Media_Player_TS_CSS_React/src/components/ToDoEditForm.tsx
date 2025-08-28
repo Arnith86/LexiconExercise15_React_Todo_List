@@ -58,20 +58,22 @@ export function TodoEditForm({
         Description:
       </UserTextInput>
 
-      <Button
-        className="g-button edit-form-submit-button"
-        buttonType="submit"
-        onClick={() => onButtonClick("save")}
-      >
-        <Icon iconName={"save"} />
-      </Button>
-      <Button
-        className="g-button edit-form-cancel-button"
-        buttonType="button"
-        onClick={() => onButtonClick("cancel")}
-      >
-        <Icon iconName={"cancel"} />
-      </Button>
+      <div className="button-row">
+        <Button
+          className="g-button edit-form-submit-button"
+          buttonType="submit"
+          onClick={() => onButtonClick("save")}
+        >
+          <Icon iconName={"save"} />
+        </Button>
+        <Button
+          className="g-button edit-form-cancel-button"
+          buttonType="button"
+          onClick={() => onButtonClick("cancel")}
+        >
+          <Icon iconName={"cancel"} />
+        </Button>
+      </div>
     </form>
   );
 }

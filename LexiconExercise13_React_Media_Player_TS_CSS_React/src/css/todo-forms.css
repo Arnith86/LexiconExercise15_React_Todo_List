@@ -1,0 +1,27 @@
+.creation-form,
+.todo-edit-form {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 2rem;
+  gap: 0.5rem;
+}
+
+.text-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-input input {
+  flex: 2;
+}
+.text-input label {
+  flex: 1;
+}
+
+.button-row {
+  display: flex;
+}
+
+.button-row .g-button {
+  flex: 1;
+}

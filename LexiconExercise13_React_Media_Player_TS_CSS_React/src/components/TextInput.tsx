@@ -20,10 +20,10 @@ export function UserTextInput({
   autoFocus,
 }: IUserTextInputProp): ReactElement {
   return (
-    <>
+    <span className="text-input">
       <label htmlFor={`${namePrefix}-input`}>{children} </label>
       {renderInputField()}
-    </>
+    </span>
   );
 
   function renderInputField(): ReactElement {

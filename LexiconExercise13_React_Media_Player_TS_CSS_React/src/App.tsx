@@ -1,4 +1,4 @@
-import "./css/base.css";
+import "./css/style.css";
 import * as Constants from "./constants";
 import { Header } from "./components/Header";
 import { ToDoCreationForm } from "./components/TodoCreationForm";
@@ -73,6 +73,7 @@ function App() {
         return 0;
       });
 
+      saveList(updatedList);
       return updatedList;
     });
   }
@@ -100,6 +101,7 @@ function App() {
 
       return updatedList;
     });
+    setEditableTodo(null);
   }
 
   function cancelEdit(): void {
