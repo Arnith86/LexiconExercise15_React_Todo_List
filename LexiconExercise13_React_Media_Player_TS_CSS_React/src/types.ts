@@ -14,4 +14,8 @@ export type TodoAction =
   | "down"
   | "completed"
   | "save"
-  | "cancel";
+  | "cancel"
+  | "sort-date"
+  | "sort-alphabetically";
+
+export type SortType = "date" | "alphabetically";

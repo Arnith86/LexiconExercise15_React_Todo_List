@@ -4,7 +4,7 @@ import { Header } from "./components/Header";
 import { ToDoCreationForm } from "./components/TodoCreationForm";
 import { TodoList } from "./components/TodoList";
 import { todos } from "./data";
-import type { ITodo, TodoAction } from "./types";
+import type { ITodo, SortType, TodoAction } from "./types";
 import { useEffect, useState } from "react";
 import {
   loadFromLocalStorage,
@@ -12,6 +12,7 @@ import {
 } from "./localStorageContainer";
 
 import { TodoEditForm } from "./components/ToDoEditForm";
+import { SortSection } from "./components/SortActionButtons";
 
 function App() {
   const [todoList, setToDoList] = useState<ITodo[]>([]);
@@ -40,9 +41,40 @@ function App() {
       case "cancel":
         cancelEdit();
         break;
+      case "sort-alphabetically":
+        sortList("alphabetically");
+        break;
+      case "sort-date":
+        sortList("date");
+        break;
+
       default:
         break;
     }
+  }
+
+  function sortList(sortType: SortType) {
+    setToDoList((prev) => {
+      const updatedList = [...prev];
+
+      updatedList.sort((a, b) => {
+        if (sortType === "alphabetically") {
+          const nameA = a.author.toLowerCase();
+          const nameB = b.author.toLowerCase();
+
+          return nameA.localeCompare(nameB);
+        } else if (sortType === "date") {
+          const dateA = new Date(a.timeStamp);
+          const dateB = new Date(b.timeStamp!);
+
+          return dateB.getTime() - dateA.getTime(); // newest first
+        }
+
+        return 0;
+      });
+
+      return updatedList;
+    });
   }
 
   function addTodo(todo: ITodo): void {
@@ -128,6 +160,7 @@ function App() {
     <main>
       <Header />
       {renderForm()}
+      <SortSection onButtonClick={handleTodoItemButtonEvent} />
       <TodoList
         todos={todoList}
         onToggle={handleCompleteToggle}

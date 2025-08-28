@@ -13,7 +13,6 @@ interface ITodoItemProp {
   onCompleteToggle: () => void;
 }
 
-// ToDo: add edit ToDo item functionality
 export function TodoItem({
   uuid,
   title,
