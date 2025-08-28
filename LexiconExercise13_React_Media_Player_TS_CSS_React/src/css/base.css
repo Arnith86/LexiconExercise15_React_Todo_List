@@ -13,16 +13,6 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
-.g-button {
-  border: none;
-  background-color: initial;
-  font-size: large;
-}
-
-.material-symbols-outlined {
-  font-size: 2rem;
-}
-
 body {
   display: flex;
   justify-content: center;
@@ -37,6 +27,7 @@ body {
   max-width: 800px;
   min-width: 450px;
   background-color: var(--secondary-color);
+  border-radius: 1rem;
 }
 
 main {
@@ -44,4 +35,14 @@ main {
   flex-direction: column;
   gap: 2rem;
   padding: 5%;
+}
+
+.g-button {
+  border: none;
+  background-color: initial;
+  font-size: large;
+}
+
+.material-symbols-outlined {
+  font-size: 2rem;
 }
