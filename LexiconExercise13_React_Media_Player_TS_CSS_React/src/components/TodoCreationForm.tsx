@@ -54,24 +54,31 @@ export function ToDoCreationForm({
 
   return (
     <form className="creation-form" onSubmit={handleSubmit}>
-      <UserTextInput namePrefix="title" placeholder="A nifty title.." required>
-        Title:
-      </UserTextInput>
-      <UserTextInput
-        namePrefix="content"
-        placeholder="What needs to be done?"
-        required
-      >
-        Description:
-      </UserTextInput>
+      <div className="form-input">
+        <UserTextInput
+          namePrefix="title"
+          placeholder="A nifty title.."
+          required
+        >
+          Title:
+        </UserTextInput>
+        <UserTextInput
+          namePrefix="content"
+          placeholder="What needs to be done?"
+          required
+        >
+          Description:
+        </UserTextInput>
 
-      <UserTextInput namePrefix="author" required placeholder="">
-        Author:
-      </UserTextInput>
-
-      <Button className="g-button add-form-submit-button" buttonType="submit">
-        <Icon iconName={"add"} />
-      </Button>
+        <UserTextInput namePrefix="author" required placeholder="">
+          Author:
+        </UserTextInput>
+      </div>
+      <div className="button-row">
+        <Button className="g-button add-form-submit-button" buttonType="submit">
+          <Icon iconName={"add"} />
+        </Button>
+      </div>
     </form>
   );
 }

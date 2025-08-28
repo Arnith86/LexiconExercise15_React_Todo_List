@@ -10,7 +10,7 @@ interface IIconProp {
  *
  * This component applies classes:
  * - `"material-symbols-outlined"` and  `"g-icon"`
- * - `"isFilled"` (optional) → when {@link IIconProp.isFilled} is `true`
+ * - `"isFilled"` (optional) → when {@link IIconProp isFilled} is `true`
  *
  * @param props - See {@link IIconProp}.
  * @returns A styled React `<span>` element containing the Material Symbol name.

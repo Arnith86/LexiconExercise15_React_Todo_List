@@ -39,24 +39,26 @@ export function TodoEditForm({
   }
 
   return (
-    <form className="todo-edit-form" onSubmit={handleSubmit}>
-      <UserTextInput
-        namePrefix="title"
-        value={editableTitle}
-        required
-        autoFocus={true}
-        onChange={setEditableTitle}
-      >
-        Title:
-      </UserTextInput>
-      <UserTextInput
-        namePrefix="content"
-        value={editableContent}
-        required
-        onChange={setEditableContent}
-      >
-        Description:
-      </UserTextInput>
+    <form className="edit-form" onSubmit={handleSubmit}>
+      <div className="form-input">
+        <UserTextInput
+          namePrefix="title"
+          value={editableTitle}
+          required
+          autoFocus={true}
+          onChange={setEditableTitle}
+        >
+          Title:
+        </UserTextInput>
+        <UserTextInput
+          namePrefix="content"
+          value={editableContent}
+          required
+          onChange={setEditableContent}
+        >
+          Description:
+        </UserTextInput>
+      </div>
 
       <div className="button-row">
         <Button

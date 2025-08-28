@@ -1,9 +1,20 @@
 .creation-form,
-.todo-edit-form {
+.edit-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-input {
   display: flex;
   flex-direction: column;
-  padding-inline: 2rem;
+  flex: 1;
   gap: 0.5rem;
+}
+
+.form-input label {
+  font-size: 1.3rem;
 }
 
 .text-input {
@@ -12,7 +23,7 @@
 }
 
 .text-input input {
-  flex: 2;
+  flex: 3;
 }
 .text-input label {
   flex: 1;
@@ -20,8 +31,10 @@
 
 .button-row {
   display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .button-row .g-button {
-  flex: 1;
+  /* flex: 1; */
 }

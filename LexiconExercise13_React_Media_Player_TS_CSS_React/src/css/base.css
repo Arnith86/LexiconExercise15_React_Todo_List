@@ -1,5 +1,5 @@
 html {
-  --main-color: #f9f9f9;
+  --main-color: #f3f3f3;
   --secondary-color: #fcfcfc;
   --primary-text-color: #333333;
   --secondary-text-color: #666666;
@@ -13,19 +13,35 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+.g-button {
+  border: none;
+  background-color: initial;
+  font-size: large;
+}
+
+.material-symbols-outlined {
+  font-size: 2rem;
+}
+
 body {
   display: flex;
   justify-content: center;
-
+  width: 100%;
+  height: 100vh;
   padding: 5%;
   background-color: var(--main-color);
+}
+
+#root {
+  width: 80%;
+  max-width: 800px;
+  min-width: 450px;
+  background-color: var(--secondary-color);
 }
 
 main {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 800px;
-  min-width: 450px;
-  /* background-color: #6d2c2c; */
+  gap: 2rem;
+  padding: 5%;
 }
