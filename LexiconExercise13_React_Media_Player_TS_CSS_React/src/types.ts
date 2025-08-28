@@ -6,3 +6,12 @@ export interface ITodo {
   completed: boolean;
   timeStamp: Date;
 }
+
+export type TodoAction =
+  | "edit"
+  | "delete"
+  | "up"
+  | "down"
+  | "completed"
+  | "save"
+  | "cancel";

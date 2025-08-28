@@ -4,16 +4,18 @@ import { Header } from "./components/Header";
 import { ToDoCreationForm } from "./components/TodoCreationForm";
 import { TodoList } from "./components/TodoList";
 import { todos } from "./data";
-import type { ITodo } from "./types";
+import type { ITodo, TodoAction } from "./types";
 import { useEffect, useState } from "react";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
 } from "./localStorageContainer";
-import type { TodoAction } from "./components/TodoItemButtons";
+
+import { TodoEditForm } from "./components/ToDoEditForm";
 
 function App() {
   const [todoList, setToDoList] = useState<ITodo[]>([]);
+  const [editableToDo, setEditableTodo] = useState<ITodo | null>(null);
 
   // Load todo list in local storage
   useEffect(() => {
@@ -21,19 +23,22 @@ function App() {
     setToDoList(storedItems.length > 0 ? storedItems : todos);
   }, []);
 
-  function handleTodoItemButtonEvent(action: TodoAction, uuid: string): void {
+  function handleTodoItemButtonEvent(action: TodoAction, uuid?: string): void {
     switch (action) {
       case "delete":
-        deleteTodo(uuid);
+        deleteTodo(uuid!);
         break;
       case "edit":
-        deleteTodo(uuid);
+        handleEditTodo(uuid!);
         break;
       case "up":
-        moveItem(Constants.TODO_MOVE_UP, uuid);
+        moveItem(Constants.TODO_MOVE_UP, uuid!);
         break;
       case "down":
-        moveItem(Constants.TODO_MOVE_DOWN, uuid);
+        moveItem(Constants.TODO_MOVE_DOWN, uuid!);
+        break;
+      case "cancel":
+        cancelEdit();
         break;
       default:
         break;
@@ -45,6 +50,29 @@ function App() {
     saveList(updatedList);
   }
 
+  function handleEditTodo(uuid: string): void {
+    const todo = todoList.find((t) => t.uuid === uuid);
+    if (todo) setEditableTodo({ ...todo });
+  }
+
+  function editTodo(editedTodo: ITodo) {
+    setToDoList((prev) => {
+      const todoIndex: number = prev.findIndex(
+        (t) => t.uuid === editedTodo.uuid
+      );
+      const updatedList = [...prev];
+
+      updatedList[todoIndex] = editedTodo;
+
+      saveList(updatedList);
+
+      return updatedList;
+    });
+  }
+
+  function cancelEdit(): void {
+    setEditableTodo(null);
+  }
   function deleteTodo(uuid: string): void {
     const updatedList: ITodo[] = todoList.filter((todo) => todo.uuid !== uuid);
     saveList(updatedList);
@@ -84,11 +112,22 @@ function App() {
 
     saveList(updatedList);
   }
+  function renderForm() {
+    if (editableToDo)
+      return (
+        <TodoEditForm
+          todo={editableToDo}
+          editTodo={editTodo}
+          onButtonClick={handleTodoItemButtonEvent}
+        />
+      );
+    return <ToDoCreationForm addToDo={addTodo} />;
+  }
 
   return (
     <main>
       <Header />
-      <ToDoCreationForm addToDo={addTodo} />
+      {renderForm()}
       <TodoList
         todos={todoList}
         onToggle={handleCompleteToggle}

@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import type { ITodo } from "../types";
 import { v4 as uuidv4 } from "uuid";
 import { Icon } from "./Icon";
+import { UserTextInput } from "./TextInput";
 
 interface ITodoCreationFormProp {
   addToDo: (todo: ITodo) => void;
@@ -30,13 +31,13 @@ interface ITodoCreationFormProp {
 export function ToDoCreationForm({
   addToDo,
 }: ITodoCreationFormProp): ReactElement {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const title = formData.get("todo-title-input") as string;
-    const content = formData.get("todo-content-input") as string;
-    const author = formData.get("todo-content-input") as string;
+    const title = formData.get("title-input") as string;
+    const content = formData.get("content-input") as string;
+    const author = formData.get("author-input") as string;
 
     const newTodo: ITodo = {
       uuid: uuidv4(),
@@ -52,30 +53,23 @@ export function ToDoCreationForm({
   }
 
   return (
-    <form className="todo-creation-form" onSubmit={handleSubmit}>
-      <label htmlFor="todo-title-input">Title: </label>
-      <input
-        type="text"
-        required
-        className="todo-title-text-input"
-        name="todo-title-input"
-        placeholder="A nifty title.."
-      />
-      <label htmlFor="todo-content-input">Description: </label>
-      <input
-        type="text"
-        required
-        className="todo-content-text-input"
-        name="todo-content-input"
+    <form className="creation-form" onSubmit={handleSubmit}>
+      <UserTextInput namePrefix="title" placeholder="A nifty title.." required>
+        Title:
+      </UserTextInput>
+      <UserTextInput
+        namePrefix="content"
         placeholder="What needs to be done?"
-      />
-      <label htmlFor="todo-author-input">Author: </label>
-      <input
-        type="text"
-        className="todo-author-text-input"
-        name="todo-author-input"
-      />
-      <Button className="g-button todo-form-submit-button" buttonType="submit">
+        required
+      >
+        Description:
+      </UserTextInput>
+
+      <UserTextInput namePrefix="author" required placeholder="">
+        Author:
+      </UserTextInput>
+
+      <Button className="g-button add-form-submit-button" buttonType="submit">
         <Icon iconName={"add"} />
       </Button>
     </form>

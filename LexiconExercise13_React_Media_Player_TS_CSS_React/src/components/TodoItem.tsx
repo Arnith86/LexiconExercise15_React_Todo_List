@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
-import { TodoItemButtons, type TodoAction } from "./TodoItemButtons";
+import type { TodoAction } from "../types";
+import { TodoItemButtons } from "./TodoItemButtons";
 
 interface ITodoItemProp {
   uuid: string;

@@ -1,7 +1,6 @@
 import type { ReactElement } from "react";
 import { TodoItem } from "./TodoItem";
-import type { ITodo } from "../types";
-import type { TodoAction } from "./TodoItemButtons";
+import type { ITodo, TodoAction } from "../types";
 
 interface ITodoListProp {
   todos: ITodo[];

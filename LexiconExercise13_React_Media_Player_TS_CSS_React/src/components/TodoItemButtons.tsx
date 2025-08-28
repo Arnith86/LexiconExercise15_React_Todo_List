@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
+import type { TodoAction } from "../types";
 
-export type TodoAction = "edit" | "delete" | "up" | "down" | "completed";
+// export type TodoAction = "edit" | "delete" | "up" | "down" | "completed";
 
 interface ITodoActionButtonsProp {
   onButtonClick: (action: TodoAction) => void;
