@@ -10,11 +10,33 @@ interface ITodoEditFormProp {
   onButtonClick: (action: TodoAction) => void;
 }
 
-export function TodoEditForm({
-  todo,
-  editTodo,
-  onButtonClick,
-}: ITodoEditFormProp): ReactElement {
+/**
+ * TodoEditForm component
+ *
+ * A controlled form for editing an existing todo item.
+ * It provides inputs for title and description, and buttons to save or cancel changes.
+ *
+ * @example
+ * ```tsx
+ * <TodoEditForm
+ *   todo={todo}
+ *   editTodo={handleEditTodo}
+ *   onButtonClick={(action) => {
+ *     if (action === "save") {
+ *       console.log("Todo saved!");
+ *     } else if (action === "cancel") {
+ *       console.log("Edit canceled");
+ *     }
+ *   }}
+ * />
+ * ```
+ *
+ * @param {ITodoEditFormProp} props - The props for the TodoEditForm component.
+ * @returns {ReactElement} A form for editing a todo item.
+ */
+export function TodoEditForm(props: ITodoEditFormProp): ReactElement {
+  const { todo, editTodo, onButtonClick } = props;
+
   const [editableTitle, setEditableTitle] = useState<string>(todo.title);
   const [editableContent, setEditableContent] = useState<string>(todo.content);
 

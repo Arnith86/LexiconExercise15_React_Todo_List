@@ -8,11 +8,28 @@ interface ITodoListProp {
   onButtonClick: (action: TodoAction, uuid: string) => void;
 }
 
-export function TodoList({
-  todos,
-  onToggle,
-  onButtonClick,
-}: ITodoListProp): ReactElement {
+/**
+ * TodoList component
+ *
+ * Renders a list of `TodoItem` components based on the provided array of todos.
+ * Each item is passed its properties, along with event handlers for toggling
+ * completion and handling action button clicks.
+ *
+ * @example
+ * ```tsx
+ * <TodoList
+ *   todos={todos}
+ *   onToggle={(uuid) => console.log("Toggled:", uuid)}
+ *   onButtonClick={(action, uuid) => console.log("Action:", action, "on", uuid)}
+ * />
+ * ```
+ *
+ * @param {ITodoListProp} props - The props for the TodoList component.
+ * @returns {ReactElement} A section containing a list of todo items.
+ */
+export function TodoList(props: ITodoListProp): ReactElement {
+  const { todos, onToggle, onButtonClick } = props;
+
   return (
     <section className="todo-list">
       {todos.map((todoItem) =>

@@ -13,16 +13,42 @@ interface ITodoItemProp {
   onCompleteToggle: () => void;
 }
 
-export function TodoItem({
-  uuid,
-  title,
-  content,
-  author,
-  completed,
-  timeStamp,
-  onButtonClick,
-  onCompleteToggle,
-}: ITodoItemProp): ReactElement {
+/**
+ * TodoItem component
+ *
+ * Displays a single todo item with its title, content, author, and timestamp.
+ * Includes a checkbox to toggle completion state and action buttons
+ * (e.g., edit or delete) via the `TodoItemButtons` component.
+ *
+ * @example
+ * ```tsx
+ * <TodoItem
+ *   uuid="123"
+ *   title="Finish project"
+ *   content="Work on the final report"
+ *   author="Jean-Paul"
+ *   completed={false}
+ *   timeStamp={new Date()}
+ *   onButtonClick={(action, id) => console.log(action, id)}
+ *   onCompleteToggle={() => console.log("Toggled completion")}
+ * />
+ * ```
+ *
+ * @param {ITodoItemProp} props - The props for the TodoItem component.
+ * @returns {ReactElement} A rendered todo item with controls.
+ */
+export function TodoItem(props: ITodoItemProp): ReactElement {
+  const {
+    uuid,
+    title,
+    content,
+    author,
+    completed,
+    timeStamp,
+    onButtonClick,
+    onCompleteToggle,
+  } = props;
+
   function forwardButtonEvent(action: TodoAction): void {
     onButtonClick(action, uuid);
   }

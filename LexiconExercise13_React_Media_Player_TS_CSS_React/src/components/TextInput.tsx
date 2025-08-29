@@ -10,15 +10,43 @@ interface IUserTextInputProp {
   autoFocus?: boolean;
 }
 
-export function UserTextInput({
-  children,
-  namePrefix,
-  placeholder,
-  required,
-  value,
-  onChange: setChange,
-  autoFocus,
-}: IUserTextInputProp): ReactElement {
+/**
+ * UserTextInput component
+ *
+ * A reusable text input field with a label, optional placeholder,
+ * and controlled/uncontrolled modes depending on whether `value`
+ * and `onChange` are provided.
+ *
+ * @component
+ * @example
+ *
+ * ```tsx
+ * <UserTextInput
+ *   namePrefix="username"
+ *   placeholder="Enter your username"
+ *   required
+ *   value={username}
+ *   onChange={setUsername}
+ *   autoFocus
+ * >
+ *   Username:
+ * </UserTextInput>
+ * ```
+ *
+ * @param {IUserTextInputProp} props - The props for the UserTextInput component.
+ * @returns {ReactElement} A labeled text input element.
+ */
+export function UserTextInput(props: IUserTextInputProp): ReactElement {
+  const {
+    children,
+    namePrefix,
+    placeholder,
+    required,
+    value,
+    onChange: setChange,
+    autoFocus,
+  } = props;
+
   return (
     <span className="text-input">
       <label htmlFor={`${namePrefix}-input`}>{children} </label>
