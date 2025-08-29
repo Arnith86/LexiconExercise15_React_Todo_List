@@ -7,22 +7,34 @@
   border: 2px solid var(--border-color);
 }
 
-.todo-item input {
-  flex: 0.5;
+.todo-item.completed {
+  background-color: var(--completed-background-color);
 }
 
-.todo-item .text-information {
+.information-and-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.todo-item input {
+  flex: 1;
+}
+
+.information-and-buttons .text-information {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex-grow: 6; /*JP comment: allows the field to expand with window*/
+  flex-grow: 4; /*JP comment: allows the field to expand with window*/
   flex-shrink: 1; /*JP comment: allows the field to shrink with window*/
   flex-basis: 0;
   min-width: 0; /*JP comment: must have value for grow/shrink to work*/
   overflow-wrap: break-word;
 }
 
-.todo-item .todo-item-Buttons {
+.information-and-buttons .todo-item-Buttons {
   flex: 1;
 }
 

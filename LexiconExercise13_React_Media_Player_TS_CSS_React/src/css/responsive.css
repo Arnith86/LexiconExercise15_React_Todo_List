@@ -1,0 +1,38 @@
+@media screen and (max-width: 768px) {
+  .todo-item-Buttons {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .text-information {
+    display: flex;
+    flex-direction: column;
+    align-items: safe;
+    min-width: 0;
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  .information-and-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  body {
+    padding: 0;
+  }
+
+  #root {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.5rem;
+  }
+}

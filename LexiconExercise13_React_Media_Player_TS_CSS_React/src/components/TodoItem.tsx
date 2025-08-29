@@ -32,24 +32,26 @@ export function TodoItem({
   const date = timeStamp instanceof Date ? timeStamp : new Date(timeStamp);
 
   return (
-    <article className="todo-item">
+    <article className={`todo-item ${completed ? "completed" : ""}`}>
       <input
         type="checkbox"
         checked={completed ?? false}
         onChange={onCompleteToggle}
       />
-      <div className="text-information">
-        <h2 className="todo-item-title">{title}</h2>
-        <p className="todo-item-content">{content}</p>
+      <span className="information-and-buttons">
+        <div className="text-information">
+          <h2 className="todo-item-title">{title}</h2>
+          <p className="todo-item-content">{content}</p>
 
-        <span className="todo-signature">
-          <p className="todo-author">{author}</p>
-          <time dateTime={date.toISOString()}>
-            {timeStamp.toLocaleString()}
-          </time>
-        </span>
-      </div>
-      <TodoItemButtons onButtonClick={forwardButtonEvent} />
+          <span className="todo-signature">
+            <p className="todo-author">{author}</p>
+            <time dateTime={date.toISOString()}>
+              {timeStamp.toLocaleString()}
+            </time>
+          </span>
+        </div>
+        <TodoItemButtons onButtonClick={forwardButtonEvent} />
+      </span>
     </article>
   );
 }
