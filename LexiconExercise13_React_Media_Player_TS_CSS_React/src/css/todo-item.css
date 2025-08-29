@@ -34,9 +34,3 @@
   font-size: small;
   color: var(--secondary-text-color);
 }
-
-.todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
