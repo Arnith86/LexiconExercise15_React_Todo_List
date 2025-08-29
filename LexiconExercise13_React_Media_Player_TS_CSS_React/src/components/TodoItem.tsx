@@ -38,10 +38,17 @@ export function TodoItem({
         checked={completed ?? false}
         onChange={onCompleteToggle}
       />
-      <h2 className="todo-item-title">{title}</h2>
-      <p className="todo-item-content">{content}</p>
-      <p className="todo-author">{author}</p>
-      <time dateTime={date.toISOString()}>{timeStamp.toLocaleString()}</time>
+      <div className="text-information">
+        <h2 className="todo-item-title">{title}</h2>
+        <p className="todo-item-content">{content}</p>
+
+        <span className="todo-signature">
+          <p className="todo-author">{author}</p>
+          <time dateTime={date.toISOString()}>
+            {timeStamp.toLocaleString()}
+          </time>
+        </span>
+      </div>
       <TodoItemButtons onButtonClick={forwardButtonEvent} />
     </article>
   );

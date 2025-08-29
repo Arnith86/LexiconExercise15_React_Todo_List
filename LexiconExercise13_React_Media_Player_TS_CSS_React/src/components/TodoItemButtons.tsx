@@ -14,37 +14,40 @@ export function TodoItemButtons({
 }: ITodoActionButtonsProp): ReactElement {
   return (
     <div className="todo-item-Buttons">
-      <Button
-        className="edit-todo-button"
-        buttonType="button"
-        onClick={() => onButtonClick("edit")}
-      >
-        <Icon iconName={"edit"} />
-      </Button>
+      <span className="top-buttons">
+        <Button
+          className="edit-todo-button"
+          buttonType="button"
+          onClick={() => onButtonClick("edit")}
+        >
+          <Icon iconName={"edit"} />
+        </Button>
 
-      <Button
-        className="delete-todo-button"
-        buttonType="button"
-        onClick={() => onButtonClick("delete")}
-      >
-        <Icon iconName={"delete"} />
-      </Button>
+        <Button
+          className="delete-todo-button"
+          buttonType="button"
+          onClick={() => onButtonClick("delete")}
+        >
+          <Icon iconName={"delete"} />
+        </Button>
+      </span>
+      <span className="bottom-buttons">
+        <Button
+          className="move-up-button"
+          buttonType="button"
+          onClick={() => onButtonClick("up")}
+        >
+          <Icon iconName={"keyboard_arrow_up"} />
+        </Button>
 
-      <Button
-        className="move-up-button"
-        buttonType="button"
-        onClick={() => onButtonClick("up")}
-      >
-        <Icon iconName={"keyboard_arrow_up"} />
-      </Button>
-
-      <Button
-        className="move-down-button"
-        buttonType="button"
-        onClick={() => onButtonClick("down")}
-      >
-        <Icon iconName={"keyboard_arrow_down"} />
-      </Button>
+        <Button
+          className="move-down-button"
+          buttonType="button"
+          onClick={() => onButtonClick("down")}
+        >
+          <Icon iconName={"keyboard_arrow_down"} />
+        </Button>
+      </span>
     </div>
   );
 }
