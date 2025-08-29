@@ -12,7 +12,7 @@ export function saveToLocalStorage<T>(key: string, data: T[]): void {
 
 export function loadFromLocalStorage<T>(key: string): T[] {
   const stored = localStorage.getItem(key);
-  return stored ? JSON.parse(stored) : [];
+  return stored ? (JSON.parse(stored) as T[]) : [];
 }
 
 export function saveSortTypeToLocalStorage(

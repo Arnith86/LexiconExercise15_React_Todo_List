@@ -8,3 +8,13 @@
 .bottom-buttons {
   display: flex;
 }
+
+.todo-item:first-child .move-up-button,
+.todo-item:last-child .move-down-button {
+  color: var(--completed-background-color);
+}
+
+.todo-item:first-child .move-up-button:hover,
+.todo-item:last-child .move-down-button:hover {
+  cursor: default;
+}

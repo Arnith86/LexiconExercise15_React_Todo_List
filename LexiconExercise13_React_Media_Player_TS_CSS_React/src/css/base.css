@@ -3,7 +3,7 @@ html {
   --secondary-color: #fcfcfc;
   --primary-text-color: #333333;
   --secondary-text-color: #666666;
-  --completed-background-color: #777272bb;
+  --completed-background-color: #7772726c;
   --border-color: #e0e0e0;
 }
 
@@ -35,6 +35,7 @@ main {
   flex-direction: column;
   gap: 2rem;
   padding: 5%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .g-button {
@@ -44,8 +45,13 @@ main {
 }
 
 .g-button:hover {
+  cursor: pointer;
   color: var(--secondary-text-color);
   transition: color 0.3s;
+}
+
+.g-button:hover .material-symbols-outlined {
+  font-variation-settings: "FILL" 1;
 }
 
 .material-symbols-outlined {
